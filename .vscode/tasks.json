@@ -9,7 +9,7 @@
 				"-g",
 				"${workspaceFolder}\\*.cpp",
 				"-o",
-				"${fileDirname}\\dist\\Snake.exe",
+				"${fileDirname}\\dist\\${fileBasenameNoExtension}.exe",
 				"-DUNICODE",
 				"-D_UNICODE"
 			],
