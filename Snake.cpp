@@ -6,7 +6,7 @@ using namespace std;
 #include <Windows.h>
 
 int nScreenWidth = 120;
-int nScreenHeight = 80;
+int nScreenHeight = 30;
 
 struct sSnakeSegment
 {
