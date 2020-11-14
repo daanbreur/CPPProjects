@@ -45,13 +45,16 @@ int main()
       while (!bDead)
    {
 
-      // Timing & Input
-      // * Frame Timing
-      this_thread::sleep_for(200ms);
+         // Timing & Input
+         // * Frame Timing
+         // this_thread::sleep_for(200ms);
 
-      // * Get Input
-      bKeyRight = (0x8000 & GetAsyncKeyState((unsigned char)('\x27'))) != 0;
-      bKeyLeft = (0x8000 & GetAsyncKeyState((unsigned char)('\x25'))) != 0;
+         // * Get Input
+         auto t1 = chrono::system_clock::now();
+         while ((chrono::system_clock::now() - t1) < ((nSnakeDirection % 2 == 1) ? 120ms : 200ms))
+         {
+            bKeyRight = (0x8000 & GetAsyncKeyState((unsigned char)('\x27'))) != 0;
+            bKeyLeft = (0x8000 & GetAsyncKeyState((unsigned char)('\x25'))) != 0;
 
       if (bKeyRight && !bKeyRightOld)
       {
@@ -65,11 +68,12 @@ int main()
          if (nSnakeDirection == -1) nSnakeDirection = 3;
       }
 
-      bKeyRightOld = bKeyRight;
-      bKeyLeftOld = bKeyLeft;
+            bKeyRightOld = bKeyRight;
+            bKeyLeftOld = bKeyLeft;
+         }
 
-      // Game Logic
-      // * Snake Position
+         // Game Logic
+         // * Snake Position
       switch (nSnakeDirection)
       {
       case 0:
