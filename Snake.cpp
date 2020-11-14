@@ -135,8 +135,13 @@ int main()
       // * Food
       screen[nFoodY * nScreenWidth + nFoodX] = L'%';
       
-      if (bDead)
-         wsprintf(&screen[15 * nScreenWidth + 40], L"    PRESS 'SPACE' TO PLAY AGAIN    ");
+         // * Death Message
+         if (bDead) 
+         {
+            wsprintf(&screen[15 * nScreenWidth + 40], L"     PRESS 'SPACE' TO PLAY AGAIN     ");
+            wsprintf(&screen[16 * nScreenWidth + 40], L"            HIGHSCORE: %d            ", nHighScore);
+            wsprintf(&screen[17 * nScreenWidth + 40], L"              SCORE: %d              ", nScore);
+         }
 
       // Display Frame
 		WriteConsoleOutputCharacter(hConsole, screen, nScreenWidth * nScreenHeight, { 0,0 }, &dwBytesWritten);
