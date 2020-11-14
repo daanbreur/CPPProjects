@@ -23,6 +23,8 @@ int main()
 	SetConsoleActiveScreenBuffer(hConsole);
 	DWORD dwBytesWritten = 0;
 
+   int nHighScore = 0;
+
    wsprintf(&screen[9 * nScreenWidth + 38], L"   _____ _   _____    __ __ ______   __   __");
    wsprintf(&screen[10 * nScreenWidth + 38], L"  / ___// | / /   |  / //_// ____/  / /  / /");
    wsprintf(&screen[11 * nScreenWidth + 38], L"  \\__ \\/  |/ / /| | / ,<  / __/    / /  / / ");
@@ -40,7 +42,6 @@ int main()
       int nFoodX = 30;
       int nFoodY = 15;
       int nScore = 0;
-      int nHighScore = 0;
       int nSnakeDirection = 3;
       bool bDead = false;
       bool bKeyLeft = false, bKeyRight = false, bKeyLeftOld = false, bKeyRightOld = false;
@@ -145,6 +146,7 @@ int main()
          // * Death Message
          if (bDead) 
          {
+            if (nScore > nHighScore) nHighScore = nScore;
             wsprintf(&screen[15 * nScreenWidth + 40], L"     PRESS 'SPACE' TO PLAY AGAIN     ");
             wsprintf(&screen[16 * nScreenWidth + 40], L"            HIGHSCORE: %d            ", nHighScore);
             wsprintf(&screen[17 * nScreenWidth + 40], L"              SCORE: %d              ", nScore);
