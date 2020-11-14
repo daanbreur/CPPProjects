@@ -23,6 +23,15 @@ int main()
 	SetConsoleActiveScreenBuffer(hConsole);
 	DWORD dwBytesWritten = 0;
 
+   wsprintf(&screen[9 * nScreenWidth + 38], L"   _____ _   _____    __ __ ______   __   __");
+   wsprintf(&screen[10 * nScreenWidth + 38], L"  / ___// | / /   |  / //_// ____/  / /  / /");
+   wsprintf(&screen[11 * nScreenWidth + 38], L"  \\__ \\/  |/ / /| | / ,<  / __/    / /  / / ");
+   wsprintf(&screen[12 * nScreenWidth + 38], L" ___/ / /|  / ___ |/ /| |/ /___   /_/  /_/  ");
+   wsprintf(&screen[13 * nScreenWidth + 38], L"/____/_/ |_/_/  |_/_/ |_/_____/  (_)  (_)   ");
+   wsprintf(&screen[15 * nScreenWidth + 40], L"         WELCOME TO SNAKE!         ");
+   wsprintf(&screen[16 * nScreenWidth + 40], L"   PRESS 'SPACE' TO START PLAYING  ");
+   WriteConsoleOutputCharacter(hConsole, screen, nScreenWidth * nScreenHeight, { 0,0 }, &dwBytesWritten);
+   while ((0x8000 & GetAsyncKeyState((unsigned char)('\x20'))) == 0);
    list<sSnakeSegment> snake = {{60, 15}, {61, 15}, {62, 15}, {63, 15}, {64, 15}, {65, 15}, {66, 15}, {67, 15}, {68, 15}, {69, 15}};
    int nFoodX = 30;
    int nFoodY = 15;
