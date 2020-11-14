@@ -32,6 +32,8 @@ int main()
    wsprintf(&screen[16 * nScreenWidth + 40], L"   PRESS 'SPACE' TO START PLAYING  ");
    WriteConsoleOutputCharacter(hConsole, screen, nScreenWidth * nScreenHeight, { 0,0 }, &dwBytesWritten);
    while ((0x8000 & GetAsyncKeyState((unsigned char)('\x20'))) == 0);
+   while (1)
+   {
    list<sSnakeSegment> snake = {{60, 15}, {61, 15}, {62, 15}, {63, 15}, {64, 15}, {65, 15}, {66, 15}, {67, 15}, {68, 15}, {69, 15}};
    int nFoodX = 30;
    int nFoodY = 15;
@@ -40,7 +42,7 @@ int main()
    bool bDead = false;
    bool bKeyLeft = false, bKeyRight = false, bKeyLeftOld = false, bKeyRightOld = false;
 
-   while (1)
+      while (!bDead)
    {
 
       // Timing & Input
@@ -140,5 +142,7 @@ int main()
 		WriteConsoleOutputCharacter(hConsole, screen, nScreenWidth * nScreenHeight, { 0,0 }, &dwBytesWritten);
    }
 
+      while ((0x8000 & GetAsyncKeyState((unsigned char)('\x20'))) == 0);
+   }
    return 0;
 }
