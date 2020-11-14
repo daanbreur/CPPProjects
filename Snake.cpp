@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <list>
 #include <thread>
 using namespace std;
@@ -23,7 +24,12 @@ int main()
 	SetConsoleActiveScreenBuffer(hConsole);
 	DWORD dwBytesWritten = 0;
 
-   int nHighScore = 0;
+   std::ifstream input("Snake.txt");
+
+   int nHighScore;
+   input >> nHighScore;
+
+   input.close();
 
    wsprintf(&screen[9 * nScreenWidth + 38], L"   _____ _   _____    __ __ ______   __   __");
    wsprintf(&screen[10 * nScreenWidth + 38], L"  / ___// | / /   |  / //_// ____/  / /  / /");
@@ -155,6 +161,10 @@ int main()
          // Display Frame
          WriteConsoleOutputCharacter(hConsole, screen, nScreenWidth * nScreenHeight, { 0,0 }, &dwBytesWritten);
       }
+
+      std::ofstream output("Snake.txt");
+      output << nHighScore; 
+      output.close();
 
       while ((0x8000 & GetAsyncKeyState((unsigned char)('\x20'))) == 0);
    }
