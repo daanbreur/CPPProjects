@@ -37,7 +37,8 @@ int main()
    wsprintf(&screen[12 * nScreenWidth + 38], L" ___/ / /|  / ___ |/ /| |/ /___   /_/  /_/  ");
    wsprintf(&screen[13 * nScreenWidth + 38], L"/____/_/ |_/_/  |_/_/ |_/_____/  (_)  (_)   ");
    wsprintf(&screen[15 * nScreenWidth + 40], L"         WELCOME TO SNAKE!         ");
-   wsprintf(&screen[16 * nScreenWidth + 40], L"   PRESS 'SPACE' TO START PLAYING  ");
+   wsprintf(&screen[16 * nScreenWidth + 40], L"       CURRENT HIGHSCORE: %d       ", nHighScore);
+   wsprintf(&screen[17 * nScreenWidth + 40], L"   PRESS 'SPACE' TO START PLAYING  ");
    WriteConsoleOutputCharacter(hConsole, screen, nScreenWidth * nScreenHeight, { 0,0 }, &dwBytesWritten);
    while ((0x8000 & GetAsyncKeyState((unsigned char)('\x20'))) == 0);
 
